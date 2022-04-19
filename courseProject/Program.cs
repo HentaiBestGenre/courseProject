@@ -1,15 +1,34 @@
+using courseProject.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddMvc();
+
+builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
+
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false; //true
+    options.Password.RequiredLength = 3; // 6
+    options.User.RequireUniqueEmail = true;
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -18,10 +37,19 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+app.UseStaticFiles();
+
+app.UseStatusCodePages();
+app.UseDeveloperExceptionPage();
+
+app.UseCookiePolicy();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller}/{action}/{id?}"
+    );
 
 app.Run();
