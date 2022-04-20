@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace courseProject.Models
 {
@@ -15,5 +16,21 @@ namespace courseProject.Models
     {
         [Required][UIHint("email")] public string Email { get; set; }
         [Required][UIHint("password")] public string Password { get; set; }
+    }
+
+    public class RoleEditModel
+    {
+        public IdentityRole Role { get; set; }
+        public IEnumerable<User> Members { get; set; }
+        public IEnumerable<User> NonMembers { get; set; }
+    }
+
+    public class RoleModeficationModel
+    {
+        [Required]
+        public string RoleName { get; set; }
+        public string RoleId { get; set; }
+        public string[] IdsToAdd { get; set; }
+        public string[] IdsToDelete { get; set; }
     }
 }
