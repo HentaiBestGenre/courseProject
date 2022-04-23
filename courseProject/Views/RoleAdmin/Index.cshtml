@@ -15,9 +15,10 @@
                 <td>@role.Name</td>
                 <td identity-role = "@role.Id"></td>
                 <td>
-                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@role.Id">Edit</a>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@role.Id" asp-route-actionName="AddMembers">Add members</a>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@role.Id" asp-route-actionName="DeleteMembers">Delete members</a>
                     <form asp-action="Delete" asp-route-id="@role.Id" method="post">
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger">Delete roole</button>
                     </form>
                 </td>
             </tr>

@@ -1,35 +1,20 @@
 ﻿@model RoleEditModel
 <div class= "bg-primary panel-body" ><h4>Edit Role</h4></div>
 <div asp-validation-summary= "All" class= "text-danger"></div>
-<form asp-controller="RoleAdmin" asp-action="Edit" method="post">
+<form asp-controller="RoleAdmin" asp-action=@Model.ActionName method="post">
     <input type= "hidden" name="roleName" value="@Model.Role.Name" />
     <input type= "hidden" name="roleId" value="@Model.Role.Id" />
-    <hб class= "bg-info panel-body" >Add То @Model.Role.Name</hб>
+    <input type= "hidden" name="actionName" value="@Model.ActionName />
+    <hб class= "bg-info panel-body" >@Model.Role.Name, @Model.ActionName</hб>
     <table class= "table table-bordered table-condensed" >
-        @if(Model.NonMembers.Count() == 0) { <tr><td colspan= "2">All Users Are Members</td></tr> }
-        else {
-            @foreach (User user in Model.NonMembers){
-                <tr>
-                    <td>@user.UserName</td> 
-                    <td> <input type="checkbox" name="IdsToAdd" value="@user.Id"> </td>
-                </tr>
-            }
+        @foreach (User user in Model.Members){
+            <tr>
+                <td>@user.UserName</td> 
+                <td> <input type="checkbox" name="Ids" value="@user.Id"> </td>
+            </tr>
         }
     </table>
-    <hб class= "bg-info panel-body" >Remove From @Model.Role.Name</hб>
-    <table class= "tаblе tаblе-bordered tаblе-condensed">
-        @if (Model.Members.Count() == 0) {
-             <tr><td colspan="2">No users are members</td></tr>
-        }
-        else {
-            @foreach (User user in Model.Members){
-                <tr>
-                    <td>@user.UserName</td>
-                    <td> <input type= "checkbox" name="IdsToDelete" value= "@user.Id" > </td>
-                </tr>
-            }
-        }
-    </table>
-    <button type="submit" class=" btn Ьtn-primary">Save</button>
+    
+    <button type="submit" class=" btn Ьtn-primary">@Model.ActionName</button>
     <a asp-action="Index" class= "btn btn-default">Cancel</a>
 </form>

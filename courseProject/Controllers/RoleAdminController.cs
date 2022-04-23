@@ -1,10 +1,12 @@
 ﻿using courseProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace courseProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RoleAdminController : Controller
     {
         private RoleManager<IdentityRole> roleManager;
@@ -46,7 +48,7 @@ namespace courseProject.Controllers
             return View("Index", roleManager.Roles);
         }
 
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string id, string actionName)
         {
             IdentityRole role = await roleManager.FindByIdAsync(id);
             List<User> members = new List<User>();
@@ -57,39 +59,50 @@ namespace courseProject.Controllers
                 list.Add(user);
             }
             return View(new RoleEditModel {
+                ActionName = actionName,
                 Role = role,
-                Members = members,
-                NonMembers = nonMembers
+                Members = actionName == "AddMembers" ? nonMembers : members
             });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(RoleModeficationModel model)
+        public async Task<IActionResult> AddMembers(RoleModeficationModel model)
         {
             IdentityResult result;
             if (ModelState.IsValid)
             {
-                foreach(string userId in model.IdsToAdd ?? new string[] { })
+                foreach (string userId in model.Ids ?? new string[] { })
                 {
                     User user = await userManager.FindByIdAsync(userId);
-                    if(user != null)
+                    if (user != null)
                     {
                         result = await userManager.AddToRoleAsync(user, model.RoleName);
                         if (!result.Succeeded) { AddErrorsFromResult(result); }
                     }
                 }
-                foreach(string userId in model.IdsToDelete ?? new string[] { })
+            }
+            if (ModelState.IsValid) { return RedirectToAction("Index"); }
+            else { return await Edit(model.RoleId, model.ActionName); }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteMembers(RoleModeficationModel model)
+        {
+            IdentityResult result;
+            if (ModelState.IsValid)
+            {
+                foreach (string userId in model.Ids ?? new string[] { })
                 {
                     User user = await userManager.FindByIdAsync(userId);
-                    if( user != null)
+                    if (user != null)
                     {
                         result = await userManager.RemoveFromRoleAsync(user, model.RoleName);
-                        if(!result.Succeeded) { AddErrorsFromResult(result); }
+                        if (!result.Succeeded) { AddErrorsFromResult(result); }
                     }
                 }
             }
-            if (ModelState.IsValid) { return RedirectToAction(nameof(Index)); }
-            else { return await Edit(model.RoleId); }
+            if (ModelState.IsValid) { return RedirectToAction("Index"); }
+            else { return await Edit(model.RoleId, model.ActionName); }
         }
 
         private void AddErrorsFromResult(IdentityResult result)

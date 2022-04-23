@@ -17,16 +17,15 @@ namespace courseProject.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl)
+        public IActionResult Login()
         {
-            ViewBag.returnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel details, string returnUrl)
+        public async Task<IActionResult> Login(LoginModel details)
         {
             if (ModelState.IsValid)
             {
