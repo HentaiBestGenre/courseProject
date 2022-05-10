@@ -1,0 +1,99 @@
+﻿@model Collection
+
+<div class="bg-primary panel-body"><h4>Create Item</h4></div>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="CreateItem" method="post">
+    <input type="hidden" name="CollectionId" value="@Model.Id"/>
+    <input type="hidden" name="CreaterId" value="@Model.Creater.Id"/>
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <td><label asp-for="Name"></label></td>
+            <td><input name="Name" class="form-control" required/></td>
+        </tr>
+        @if (Model.StringFieldName1 != null){<tr>
+            <td>@Model.StringFieldName1</td>
+            <td><input name="StringFieldValue1" type="text" class="form-control" required/></td>
+        </tr>}
+        @if (Model.StringFieldName2 != null){<tr>
+            <td>@Model.StringFieldName2</td>
+            <td><input name="StringFieldValue2" type="text" class="form-control" required/></td>
+        </tr>}
+        @if (Model.StringFieldName3 != null){<tr>
+            <td>@Model.StringFieldName3</td>
+            <td><input name="StringFieldValue3" type="text" class="form-control" required/></td>
+        </tr>}
+        @if (Model.IntFieldName1 != null){<tr>
+            <td>@Model.IntFieldName1</td>
+            <td><input name="IntFieldValue1" type="text" class="form-control" required/></td>
+        </tr>}
+        @if (Model.IntFieldName2 != null){<tr>
+            <td>@Model.IntFieldName2</td>
+            <td><input name="IntFieldValue2" type="text" class="form-control" required/></td>     
+        </tr>}
+        @if (Model.IntFieldName3 != null){<tr>
+            <td>@Model.IntFieldName3</td>
+            <td><input name="IntFieldValue3" type="text" class="form-control" required/></td>
+        </tr>}
+        @if (Model.BoolFieldName1 != null){<tr>
+            <td>@Model.BoolFieldName1</td>
+            <td><input name="BoolFieldValue1" type="checkbox" class="form-control" required/></td>
+        </tr>}
+        @if (Model.BoolFieldName2 != null){<tr>
+            <td>@Model.BoolFieldName2</td>
+            <td><input name="BoolFieldValue2" type="checkbox" class="form-control" required/></td>
+        </tr>}
+        @if(Model.BoolFieldName3 != null){<tr>
+            <td>@Model.BoolFieldName3</td>
+            <td><input name="BoolFieldValue3" type="checkbox" class="form-control" required/></td>
+        </tr>}
+        @if (Model.DateTimeFieldName1 != null){<tr>
+            <td>@Model.DateTimeFieldName1</td>
+            <td><input name="DateTimeFieldValue1" type="datetime-local" class="form-control" required/></td>
+        </tr>}
+        @if (Model.DateTimeFieldName2 != null){<tr>
+            <td>@Model.DateTimeFieldName2</td>
+            <td><input name="DateTimeFieldValue2" type="datetime-local" class="form-control" required/></td>     
+        </tr>}
+        @if (Model.DateTimeFieldName3 != null){<tr>
+            <td>@Model.DateTimeFieldName3</td>
+            <td><input name="DateTimeFieldValue3" type="datetime-local" class="form-control" required/></td>
+        </tr>}
+    </table>
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>Tags</th>
+        </tr>
+        <tr>
+            <td><div id="TagFields" class="col-9"></div></td>
+        </tr>
+        <tr>
+            <div>
+                <td><input type="button" id="TagButton" class="btn btn-primary" value="Add Tag" onclick="newField()" /></td>
+            </div>
+        </tr>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-controller="Collection" asp-action="ShowCollection" class = "btn btn-default" asp-route-collectionId="@Model.Id">Cancel</a>
+</form>
+
+<script>
+    function newField() {
+        let container = document.getElementById("TagFields"); 
+        let fieldCount = container.getElementsByTagName("input").length;
+        let nextFieldId = fieldCount + 1;
+        let div = document.createElement("div");
+            div.setAttribute("class", "form-group");
+
+        let field = document.createElement("input");
+            field.setAttribute("id", "tags" + nextFieldId);
+            field.setAttribute("name", "tags");
+            field.setAttribute("class", "form-control");
+            field.setAttribute("type", "text");
+            field.setAttribute("data-val", "true");
+            field.setAttribute("required", "");
+
+        div.appendChild(field);
+        container.appendChild(div);
+    }
+</script>

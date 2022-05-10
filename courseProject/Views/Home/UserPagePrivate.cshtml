@@ -1,8 +1,0 @@
-﻿@model Dictionary<string, object>
-
-<div class="bg-primary panel-body"><h4>User Details</h4></div>
-
-<table class="table table-condensed table-bordered">
-    @foreach(var kvp in Model) { <tr><th>@kvp.Key</th><td>@kvp.Value</td></tr> }
-    <a asp-controller="Admin" asp-action="Index" asp-route-userID=@ViewBag.UserId class="btn btn-primary">Admin</a>
-</table>

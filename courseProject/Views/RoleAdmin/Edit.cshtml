@@ -4,7 +4,7 @@
 <form asp-controller="RoleAdmin" asp-action=@Model.ActionName method="post">
     <input type= "hidden" name="roleName" value="@Model.Role.Name" />
     <input type= "hidden" name="roleId" value="@Model.Role.Id" />
-    <input type= "hidden" name="actionName" value="@Model.ActionName />
+    <input type= "hidden" name="actionName" value=@Model.ActionName />
     <hб class= "bg-info panel-body" >@Model.Role.Name, @Model.ActionName</hб>
     <table class= "table table-bordered table-condensed" >
         @foreach (User user in Model.Members){
@@ -16,5 +16,5 @@
     </table>
     
     <button type="submit" class=" btn Ьtn-primary">@Model.ActionName</button>
-    <a asp-action="Index" class= "btn btn-default">Cancel</a>
+    <a asp-action="Index" class="btn btn-primary">Cancel</a>
 </form>

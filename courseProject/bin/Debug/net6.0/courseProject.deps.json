@@ -12,7 +12,10 @@
           "Microsoft.AspNetCore.StaticFiles": "2.2.0",
           "Microsoft.EntityFrameworkCore": "7.0.0-preview.3.22175.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0-preview.3.22175.1",
-          "Microsoft.EntityFrameworkCore.Tools": "7.0.0-preview.3.22175.1"
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.0-preview.3.22175.1",
+          "jQuery": "3.6.0",
+          "jQuery.Steps": "1.1.0",
+          "jQuery.UI": "1.12.1.1"
         },
         "runtime": {
           "courseProject.dll": {}
@@ -58,6 +61,17 @@
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
           }
+        }
+      },
+      "jQuery/3.6.0": {},
+      "jQuery.Steps/1.1.0": {
+        "dependencies": {
+          "jQuery": "3.6.0"
+        }
+      },
+      "jQuery.UI/1.12.1.1": {
+        "dependencies": {
+          "jQuery": "3.6.0"
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.4": {
@@ -796,6 +810,27 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "jQuery/3.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sSzCTDWn15waSMjDrP21jjgG1j1pwISLaKiVCClwU4XGAmuZt+FScLkdyRvh9ppoIxAW/tJtJBYei+3CAwFQ7g==",
+      "path": "jquery/3.6.0",
+      "hashPath": "jquery.3.6.0.nupkg.sha512"
+    },
+    "jQuery.Steps/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i0b/2qjjJD8qkIOIo4g8kH4R9YvD3cAZnjyY+rMtf4UB0ukPTEnaHaxzdfbkvd82CytIQheAH1Y9ThiF8cqCBA==",
+      "path": "jquery.steps/1.1.0",
+      "hashPath": "jquery.steps.1.1.0.nupkg.sha512"
+    },
+    "jQuery.UI/1.12.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-E+n7ILz0Pl7gGiPUXcMvdMtr8eIa8FPByfaoParBTLYFNtaNj9QA6gpD3IdWe9tARMNkpHCVmZ0Xo//kXh38Vg==",
+      "path": "jquery.ui/1.12.1.1",
+      "hashPath": "jquery.ui.1.12.1.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.4": {
       "type": "package",

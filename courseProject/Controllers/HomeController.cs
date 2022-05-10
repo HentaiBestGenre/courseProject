@@ -1,34 +1,29 @@
-﻿using courseProject.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using courseProject.Services;
 
 namespace courseProject.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private IHomePageInterface HomePageInterface;
 
-        public HomeController(ILogger<HomeController> logger) => _logger = logger;
+        public HomeController(ILogger<HomeController> logger, IHomePageInterface hpi) { 
+            _logger = logger;
+            HomePageInterface = hpi;
+        }
 
-        [Route("~/")]
-        [Route("~/Home/")]
-        [Route("~/Home/Index")]
-        [Authorize]
-        public IActionResult Index() => View(GetData(nameof(Index)));
-
-        public IActionResult Privacy() => View();
-
-        [Authorize(Roles = "Users")]
-        public IActionResult OthresAction() => View("Index", GetData(nameof(OthresAction)));
-        
-        private Dictionary<string, object> GetData(string actionName) => new Dictionary<string, object>
+        [AllowAnonymous]
+        public async Task<IActionResult> Index(string searchString, string id = "Item")
         {
-            ["Action"] = actionName,
-            ["User"] = HttpContext.User.Identity.Name,
-            ["Authenticated"] = HttpContext.User.Identity.IsAuthenticated,
-            ["Auth Type"] = HttpContext.User.Identity.AuthenticationType,
-            ["In Users Role"] = HttpContext.User.IsInRole("Users")
-        };
+            /* Initialize DB
+            SeedData t = new SeedData(db, userManager, roleManager);
+            await t.Adding();*/
+            ViewBag.SearchString = searchString;
+            return View(HomePageInterface.Collections(id, searchString));
+        }
+
     }
 }

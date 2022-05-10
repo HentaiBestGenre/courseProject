@@ -55,7 +55,7 @@ namespace courseProject.Controllers
             List<User> nonMembers = new List<User>();
             foreach(User user in userManager.Users)
             {
-                var list = await userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers; /////// Error
+                var list = await userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
                 list.Add(user);
             }
             return View(new RoleEditModel {

@@ -61,6 +61,18 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.0-preview.3.22175.1, )"
+            },
+            "jQuery": {
+              "target": "Package",
+              "version": "[3.6.0, )"
+            },
+            "jQuery.Steps": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "jQuery.UI": {
+              "target": "Package",
+              "version": "[1.12.1.1, )"
             }
           },
           "imports": [

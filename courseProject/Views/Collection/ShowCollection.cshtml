@@ -1,0 +1,59 @@
+﻿@model Collection
+
+<div class="panel-body">
+    <h4>Items Details</h4>
+    <h5>Collection - @Model.Name</h5>
+    <h5>Creater - <a asp-controller="Account" asp-action ="Profile" asp-route-userId="@Model.Creater.Id">@Model.Creater.UserName</a></h5>
+</div>
+
+<table class="table table-condensed table-bordered">
+    <tr>
+        <th>Item Name</th>
+        @if(Model.StringFieldName1 != null) { <th>@Model.StringFieldName1</th> }
+        @if(Model.StringFieldName2 != null) { <th>@Model.StringFieldName2</th> }
+        @if(Model.StringFieldName3 != null) { <th>@Model.StringFieldName3</th> }
+        @if(Model.IntFieldName1 != null) { <th>@Model.IntFieldName1</th> }
+        @if(Model.IntFieldName2 != null) { <th>@Model.IntFieldName2</th> }
+        @if(Model.IntFieldName3 != null) { <th>@Model.IntFieldName3</th> }
+        @if(Model.DateTimeFieldName1 != null) { <th>@Model.DateTimeFieldName1</th> }
+        @if(Model.DateTimeFieldName2 != null) { <th>@Model.DateTimeFieldName2</th> }
+        @if(Model.DateTimeFieldName3 != null) { <th>@Model.DateTimeFieldName3</th> }
+        @if(Model.BoolFieldName1 != null) { <th>@Model.BoolFieldName1</th> }
+        @if(Model.BoolFieldName2 != null) { <th>@Model.BoolFieldName2</th> }
+        @if(Model.BoolFieldName3 != null) { <th>@Model.BoolFieldName3</th> }
+    </tr>
+    @if(@Model.Items.Count() == 0)
+    {
+        <tr><td>No Items</td></tr>
+    }
+    else
+    {
+        @foreach(Item item in Model.Items)
+        {
+            <tr>
+                <td><a asp-action="ShowItem" asp-controller="Collection" asp-route-itemId="@item.Id">@item.Name</a></td>
+                @if(item.StringFieldValue1 != null) { <td>@item.StringFieldValue1</td> }
+                @if(item.StringFieldValue2 != null) { <td>@item.StringFieldValue2</td> }
+                @if(item.StringFieldValue3 != null) { <td>@item.StringFieldValue3</td> }
+                @if(item.IntFieldValue1 != null) { <td>@item.IntFieldValue1</td> }
+                @if(item.IntFieldValue2 != null) { <td>@item.IntFieldValue2</td> }
+                @if(item.IntFieldValue3 != null) { <td>@item.IntFieldValue3</td> }
+                @if(item.DateTimeFieldValue1 != null) { <td>@item.DateTimeFieldValue1</td> }
+                @if(item.DateTimeFieldValue2 != null) { <td>@item.DateTimeFieldValue2</td> }
+                @if(item.DateTimeFieldValue3 != null) { <td>@item.DateTimeFieldValue3</td> }
+                @if(item.BoolFieldValue1 != null) { <td>@item.BoolFieldValue1</td> }
+                @if(item.BoolFieldValue2 != null) { <td>@item.BoolFieldValue2</td> }
+                @if(item.BoolFieldValue3 != null) { <td>@item.BoolFieldValue3</td> }
+                @if( Context.Request.Cookies["userId"] == @Model.Creater.Id || Context.User.IsInRole("Admin") ) { 
+                    <form asp-controller="Collection", asp-action="DeleteItem" asp-route-itemId="@item.Id">
+                    <td><button class="btn btn-danger" type="submit">Delete</button></td>
+                    </form>
+                }
+            </tr>
+        }
+    }
+</table>
+@if( Context.Request.Cookies["userId"] == @Model.Creater.Id || @User.IsInRole("Admin")){
+    <a class="nav-link text-dark" asp-controller="Collection" asp-action="CreateItem" asp-route-collectionId=@Model.Id>Create Item</a> 
+}
+

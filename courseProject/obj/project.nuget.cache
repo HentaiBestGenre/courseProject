@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "XV8hK4VEV3IE2FBR64TnGTXATEKb5zK+mYWIbwJsGbMHeZBhJV5tBXUReLv+gzI/2+JUZaCfk4Mq7143rbMbgw==",
+  "dgSpecHash": "IPPzNerKRUXW7RGJC6I103TIhGuUKsc+w2q17z2T/dg84ZaxUemNi+6UdALBXEAD5ZywJl+DAS3+ArdSCb5AgA==",
   "success": true,
   "projectFilePath": "D:\\Projects\\trenee\\courseProject\\courseProject\\courseProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vadim\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",
     "C:\\Users\\vadim\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",
     "C:\\Users\\vadim\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\vadim\\.nuget\\packages\\jquery\\3.6.0\\jquery.3.6.0.nupkg.sha512",
+    "C:\\Users\\vadim\\.nuget\\packages\\jquery.steps\\1.1.0\\jquery.steps.1.1.0.nupkg.sha512",
+    "C:\\Users\\vadim\\.nuget\\packages\\jquery.ui\\1.12.1.1\\jquery.ui.1.12.1.1.nupkg.sha512",
     "C:\\Users\\vadim\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.4\\microsoft.aspnetcore.cryptography.internal.6.0.4.nupkg.sha512",
     "C:\\Users\\vadim\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.4\\microsoft.aspnetcore.cryptography.keyderivation.6.0.4.nupkg.sha512",
     "C:\\Users\\vadim\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",

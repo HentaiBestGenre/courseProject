@@ -1,12 +1,102 @@
-﻿@model Dictionary<string, object>
+﻿@model Dictionary<string, IEnumerable<object>>
 
-<div class="bg-primary panel-body"><h4>User Details</h4></div>
-
-<table class="table table-condensed table-bordered">
-    @foreach(var kvp in Model) { <tr><th>@kvp.Key</th><td>@kvp.Value</td></tr> }
+<div class="bg-primary panel-body"><h4>Main Page</h4></div>
+<form asp-controller="Home" asp-action="Index" method="get">
+    <p>
+        Search: <input type="text" name="searchString" value="@ViewBag.SearchString"/>
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table>
+    <tr>
+        <td>
+            <form asp-controller="Home" asp-action="Index" method="get">
+                <input type="hidden" value="@ViewBag.SearchString" name="searchString" />
+                <input type="hidden" value="Data" name="id" />
+                <input class="btn btn-sm btn-primary" type="submit" value="Data" />
+            </form>
+        </td>
+        <td>
+            <form asp-controller="Home" asp-action="Index" method="get">
+                <input type="hidden" value="@ViewBag.SearchString" name="searchString" />
+                <input type="hidden" value="Items" name="id" />
+                <input class="btn btn-sm btn-primary" type="submit" value="Items" />
+            </form>
+        </td>
+        <td>
+            <form asp-controller="Home" asp-action="Index" method="get">
+                <input type="hidden" value="@ViewBag.SearchString" name="searchString" />
+                <input type="hidden" value="Name" name="id" />
+                <input class="btn btn-sm btn-primary" type="submit" value="Name" />
+            </form>
+        </td>
+    </tr>
 </table>
 
-<div class="text-center">
-    @if(User?.Identity?.IsAuthenticated ?? false)
-    { <a asp-controller="Account" asp-action="Logout" class="btn btn-danger"> Logout</a> }
+<div class="container">
+    <ul class="nav nav-tabs" role="tablist">  
+        <li class="nav-item">  
+            <a class="nav-link active" data-toggle="tab" href="#collections">Collections</a>  
+        </li> 
+        <li class="nav-item">  
+            <a class="nav-link" data-toggle="tab" href="#items">Items</a>  
+        </li>
+    </ul>  
+    <div class="tab-content">
+        <div id="collections" class="container tab-pane active">  
+            <table class="table table-condensed table-bordered">
+                <tr>
+                    <th>Collection name</th>
+                    <th>Creater Name</th>
+                    <th>Topic</th>
+                    <th>Description</th>
+                    <th>Item Namber</th>
+                </tr>
+                @if(Model["collections"].Count() == 0 && Model["items"].Count() == 0){<tr><td>No content</td></tr>}
+                @foreach(Collection collection in Model["collections"])
+                {
+                    <tr>
+                        <td><a asp-controller="Collection" asp-action="ShowCollection" asp-route-collectionId=@collection.Id>@collection.Name</a></td>
+                        <td><a asp-action="Profile" asp-controller="Account" asp-route-userId=@collection.Creater.Id>@collection.Creater.UserName</a></td>
+                        <td>@collection.Topic.Name</td>
+                        <td>@collection.Description</td>
+                        <td>@collection.Items.Count()</td>
+                        @if(User.IsInRole("Admin")){
+                            <td><form asp-controller="Collection" asp-action="Delete" asp-route-collectionId="@collection.Id" method="post">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form></td>
+                        }
+                    </tr>
+                }
+            </table>  
+        </div>
+        <div id="items" class="container tab-pane active">  
+            <table class="table table-condensed table-bordered">
+                <tr>
+                    <th>Item name</th>
+                    <th>Collection Name</th>
+                    <th>Comments Namber</th>
+                </tr>
+                @foreach(Item item in Model["items"])
+                {
+                    <tr>
+                        <td><a asp-controller="Collection" asp-action="ShowItem" asp-route-itemId=@item.Id>@item.Name</a></td>
+                        <td><a asp-action="ShowCollection" asp-controller="Collection" asp-route-collectionId=@item.Collection.Id>@item.Collection.Name</a></td>
+                        <td>@item.Comments.Count()</td>
+                        @if(User.IsInRole("Admin")){
+                            <td><form asp-controller="Collection" asp-action="DeleteItem" asp-route-itemId="@item.Id" method="post">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form></td>
+                        }
+                    </tr>
+                }
+            </table> 
+        </div>
+    </div>
 </div>
+@if(User?.Identity?.IsAuthenticated ?? false)
+{ <a class="nav-link text-dark" asp-controller="Collection" asp-action="CreateCollection" asp-route-createrId=@Context.Request.Cookies["userId"]>Create Collection</a> }
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
