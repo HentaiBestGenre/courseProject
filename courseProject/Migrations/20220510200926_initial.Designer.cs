@@ -12,8 +12,8 @@ using courseProject.Models;
 namespace courseProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220507224801_init")]
-    partial class init
+    [Migration("20220510200926_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

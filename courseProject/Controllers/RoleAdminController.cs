@@ -53,7 +53,8 @@ namespace courseProject.Controllers
             IdentityRole role = await roleManager.FindByIdAsync(id);
             List<User> members = new List<User>();
             List<User> nonMembers = new List<User>();
-            foreach(User user in userManager.Users)
+            var users = userManager.Users.ToList();
+            foreach (User user in users)
             {
                 var list = await userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
                 list.Add(user);

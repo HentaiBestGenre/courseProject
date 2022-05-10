@@ -14,36 +14,8 @@ namespace courseProject.Models
         }
         public async Task Adding()
         {
-            await roleManager.CreateAsync(new IdentityRole("User"));
-            await roleManager.CreateAsync(new IdentityRole("Admin"));
-            User Hen = new User { 
-                UserName = "Hen",
-                Email = "gr801821@gmail.com",
-            };
-
-            IdentityResult result1 = await userManager.CreateAsync(Hen, "qwe");
-            if (result1.Succeeded) { 
-                await userManager.AddToRoleAsync(Hen, "User");
-                await userManager.AddToRoleAsync(Hen, "Admin");
-            }
-
-            ProfilePage profile1 = new ProfilePage() { 
-                Description = "Hen, the only web app admin",
-                Online = DateTime.Now,
-                User = Hen
-            };
-
-            User qwe = new User
-            {
-                UserName = "qwe",
-                Email = "qwe@gmail.com",
-            };
-
-            IdentityResult result2 = await userManager.CreateAsync(qwe, "qwe");
-            if (result2.Succeeded)
-            {
-                await userManager.AddToRoleAsync(qwe, "User");
-            }
+            User Hen = db.Users.Where(x => x.Email == "gr801821@gmail.com").First();
+            User qwe = db.Users.Where(x => x.Email == "qwe@gmail.com").First();
 
             ProfilePage profile2 = new ProfilePage()
             {
@@ -51,7 +23,7 @@ namespace courseProject.Models
                 Online = DateTime.Now,
                 User = qwe
             };
-            db.ProfilePages.AddRange(profile1, profile2);
+            db.ProfilePages.AddRange(profile2);
 
             Tag FilmTag = new Tag() { Name = "Film" };
             Tag MovieTag = new Tag() { Name = "Movie" };
