@@ -9,33 +9,28 @@
 <table class="table table-condensed table-bordered">
     <tr>
         <th>Item Name</th>
-        @if(Model.Collection.StringFieldName1 != null) { <th>@Model.Collection.StringFieldName1</th> }
-        @if(Model.Collection.StringFieldName2 != null) { <th>@Model.Collection.StringFieldName2</th> }
-        @if(Model.Collection.StringFieldName3 != null) { <th>@Model.Collection.StringFieldName3</th> }
-        @if(Model.Collection.IntFieldName1 != null) { <th>@Model.Collection.IntFieldName1</th> }
-        @if(Model.Collection.IntFieldName2 != null) { <th>@Model.Collection.IntFieldName2</th> }
-        @if(Model.Collection.IntFieldName3 != null) { <th>@Model.Collection.IntFieldName3</th> }
-        @if(Model.Collection.DateTimeFieldName1 != null) { <th>@Model.Collection.DateTimeFieldName1</th> }
-        @if(Model.Collection.DateTimeFieldName2 != null) { <th>@Model.Collection.DateTimeFieldName2</th> }
-        @if(Model.Collection.DateTimeFieldName3 != null) { <th>@Model.Collection.DateTimeFieldName3</th> }
-        @if(Model.Collection.BoolFieldName1 != null) { <th>@Model.Collection.BoolFieldName1</th> }
-        @if(Model.Collection.BoolFieldName2 != null) { <th>@Model.Collection.BoolFieldName2</th> }
-        @if(Model.Collection.BoolFieldName3 != null) { <th>@Model.Collection.BoolFieldName3</th> }
+        @{ var props1 = typeof(Collection).GetProperties(); }
+        @for(int i = 3; i < 15; ++i)
+        {
+            var value = props1[i].GetValue(Model.Collection);
+            @if(value != null){<th>@value</th>}
+        }
+        <th>Creation Item Data</th>
     </tr>
     <tr>
         <td>@Model.Name</td>
-        @if(Model.StringFieldValue1 != null) { <td>@Model.StringFieldValue1</td> }
-        @if(Model.StringFieldValue2 != null) { <td>@Model.StringFieldValue2</td> }
-        @if(Model.StringFieldValue3 != null) { <td>@Model.StringFieldValue3</td> }
-        @if(Model.IntFieldValue1 != null) { <td>@Model.IntFieldValue1</td> }
-        @if(Model.IntFieldValue2 != null) { <td>@Model.IntFieldValue2</td> }
-        @if(Model.IntFieldValue3 != null) { <td>@Model.IntFieldValue3</td> }
-        @if(Model.DateTimeFieldValue1 != null) { <td>@Model.DateTimeFieldValue1</td> }
-        @if(Model.DateTimeFieldValue2 != null) { <td>@Model.DateTimeFieldValue2</td> }
-        @if(Model.DateTimeFieldValue3 != null) { <td>@Model.DateTimeFieldValue3</td> }
-        @if(Model.BoolFieldValue1 != null) { <td>@Model.BoolFieldValue1</td> }
-        @if(Model.BoolFieldValue2 != null) { <td>@Model.BoolFieldValue2</td> }
-        @if(Model.BoolFieldValue3 != null) { <td>@Model.BoolFieldValue3</td> }
+        @{ var props2 = typeof(Item).GetProperties(); }
+        @for(int i = 2; i < 14; ++i)
+        {
+            var value = props2[i].GetValue(Model);
+            @if(value != null){<td>@value</td>}
+        }
+
+        @if( Context.Request.Cookies["userId"] == @Model.CreaterId || Context.User.IsInRole("Admin") ) { 
+            <form asp-controller="Collection", asp-action="DeleteItem" asp-route-itemId="@Model.Id">
+                <td><button class="btn btn-danger" type="submit">Delete</button></td>
+            </form>
+        }
     </tr>
 </table>
 
