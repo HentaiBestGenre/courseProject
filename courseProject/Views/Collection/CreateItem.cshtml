@@ -10,54 +10,36 @@
             <td><label asp-for="Name"></label></td>
             <td><input name="Name" class="form-control" required/></td>
         </tr>
-        @if (Model.StringFieldName1 != null){<tr>
-            <td>@Model.StringFieldName1</td>
-            <td><input name="StringFieldValue1" type="text" class="form-control" required/></td>
-        </tr>}
-        @if (Model.StringFieldName2 != null){<tr>
-            <td>@Model.StringFieldName2</td>
-            <td><input name="StringFieldValue2" type="text" class="form-control" required/></td>
-        </tr>}
-        @if (Model.StringFieldName3 != null){<tr>
-            <td>@Model.StringFieldName3</td>
-            <td><input name="StringFieldValue3" type="text" class="form-control" required/></td>
-        </tr>}
-        @if (Model.IntFieldName1 != null){<tr>
-            <td>@Model.IntFieldName1</td>
-            <td><input name="IntFieldValue1" type="text" class="form-control" required/></td>
-        </tr>}
-        @if (Model.IntFieldName2 != null){<tr>
-            <td>@Model.IntFieldName2</td>
-            <td><input name="IntFieldValue2" type="text" class="form-control" required/></td>     
-        </tr>}
-        @if (Model.IntFieldName3 != null){<tr>
-            <td>@Model.IntFieldName3</td>
-            <td><input name="IntFieldValue3" type="text" class="form-control" required/></td>
-        </tr>}
-        @if (Model.BoolFieldName1 != null){<tr>
-            <td>@Model.BoolFieldName1</td>
-            <td><input name="BoolFieldValue1" type="checkbox" class="form-control" required/></td>
-        </tr>}
-        @if (Model.BoolFieldName2 != null){<tr>
-            <td>@Model.BoolFieldName2</td>
-            <td><input name="BoolFieldValue2" type="checkbox" class="form-control" required/></td>
-        </tr>}
-        @if(Model.BoolFieldName3 != null){<tr>
-            <td>@Model.BoolFieldName3</td>
-            <td><input name="BoolFieldValue3" type="checkbox" class="form-control" required/></td>
-        </tr>}
-        @if (Model.DateTimeFieldName1 != null){<tr>
-            <td>@Model.DateTimeFieldName1</td>
-            <td><input name="DateTimeFieldValue1" type="datetime-local" class="form-control" required/></td>
-        </tr>}
-        @if (Model.DateTimeFieldName2 != null){<tr>
-            <td>@Model.DateTimeFieldName2</td>
-            <td><input name="DateTimeFieldValue2" type="datetime-local" class="form-control" required/></td>     
-        </tr>}
-        @if (Model.DateTimeFieldName3 != null){<tr>
-            <td>@Model.DateTimeFieldName3</td>
-            <td><input name="DateTimeFieldValue3" type="datetime-local" class="form-control" required/></td>
-        </tr>}
+        @{ var props1 = typeof(Collection).GetProperties(); }
+        @for(int i = 3; i < 15; ++i)
+        {
+            var value = props1[i].GetValue(Model);
+            var name = props1[i].Name;
+            <tr>
+                @if(value != null){
+                    <td>@value</td>
+                    @switch (i)
+                    {
+                        case 3: case 4: case 5:
+                        case 6: case 7: case 8:
+                            <td><input name="@name.Replace("Name", "Value")" type="text" required/></td>
+                            ;
+                            break;
+                        case 9: case 10: case 11:
+                            <td><input name="@name.Replace("Name", "Value")" type="datetime-local" required/></td>
+                            ;
+                            break;
+                        case 12: case 13: case 14:
+                            <td><input name="@name.Replace("Name", "Value")" type="checkbox" required/></td>
+                            ;
+                            break;
+                    }
+                }
+            </tr>
+        }
+
+
+        
     </table>
     <table class="table table-condensed table-bordered">
         <tr>

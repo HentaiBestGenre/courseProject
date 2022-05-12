@@ -44,7 +44,7 @@
                 <td><input type="button" id="BoolButton" class="btn btn-primary" value="Add Bool Fild" onclick="newField('Bool')" /></td>
             </div>
         </tr>
-    </table>w
+    </table>
 
     <button type="submit" class="btn btn-primary">Create</button>
     <a asp-controller="Home" asp-action="Index" class = "btn btn-default">Cancel</a>
@@ -65,9 +65,7 @@
 
             let field = document.createElement("input");
                 field.setAttribute("name", type+"FieldName"+nextFieldId);
-                field.setAttribute("class", "form-control");
                 field.setAttribute("type", "text");
-                field.setAttribute("data-val", "true");
 
             div.appendChild(label);
             div.appendChild(field);

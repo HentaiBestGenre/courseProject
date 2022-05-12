@@ -11,9 +11,6 @@ namespace courseProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IHomePageInterface HomePageInterface;
-        private readonly ApplicationDbContext db;
-        private UserManager<User> UserManager;
-        private RoleManager<IdentityRole> RoleManager;
 
         public HomeController(ILogger<HomeController> logger, IHomePageInterface hpi) { 
             _logger = logger;
