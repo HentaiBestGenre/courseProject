@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using courseProject.Services;
-using courseProject.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace courseProject.Controllers
 {
@@ -18,11 +16,8 @@ namespace courseProject.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Index(string searchString, string id = "Item")
+        public IActionResult Index(string searchString, string id = "Item")
         {
-            /* Initialize DB*/
-            //SeedData t = new SeedData(db, UserManager, RoleManager);
-            //await t.Adding();
             ViewBag.SearchString = searchString;
             return View(HomePageInterface.Collections(id, searchString));
         }
