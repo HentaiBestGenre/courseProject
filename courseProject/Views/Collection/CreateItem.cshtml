@@ -11,7 +11,7 @@
             <td><input name="Name" class="form-control" required/></td>
         </tr>
         @{ var props1 = typeof(Collection).GetProperties(); }
-        @for(int i = 3; i < 15; ++i)
+        @for(int i = 7; i < props1.Count(); ++i)
         {
             var value = props1[i].GetValue(Model);
             var name = props1[i].Name;
@@ -20,18 +20,17 @@
                     <td>@value</td>
                     @switch (i)
                     {
-                        case 3: case 4: case 5:
-                        case 6: case 7: case 8:
+                        case 7: case 8: case 9:
+                        case 10: case 11: case 12:
+                        case 13: case 14: case 15:
                             <td><input name="@name.Replace("Name", "Value")" type="text" required/></td>
-                            ;
                             break;
-                        case 9: case 10: case 11:
+                        case 16: case 17: case 18:
                             <td><input name="@name.Replace("Name", "Value")" type="datetime-local" required/></td>
-                            ;
                             break;
-                        case 12: case 13: case 14:
-                            <td><input name="@name.Replace("Name", "Value")" type="checkbox" required/></td>
-                            ;
+                        case 19: case 20: case 21:
+                            <input name="@name.Replace("Name", "Value")" type="hidden" value='false'/>
+                            <td><input name="@name.Replace("Name", "Value")" type="checkbox" /></td>
                             break;
                     }
                 }

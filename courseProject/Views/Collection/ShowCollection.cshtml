@@ -12,7 +12,7 @@
     <tr>
         <th>Item Name</th>
         @{ var props1 = typeof(Collection).GetProperties(); }
-        @for(int i = 3; i < 15; ++i)
+        @for(int i = 7; i < props1.Count(); ++i)
         {
             var value = props1[i].GetValue(Model);
             @if(value != null){<th>@value</th>}
@@ -28,7 +28,7 @@
                 <td><a asp-action="ShowItem" asp-controller="Collection" asp-route-itemId="@item.Id">@item.Name</a></td>
 
                 @{ var props2 = typeof(Item).GetProperties(); }
-                @for(int i = 2; i < 14; ++i)
+                @for(int i = 7; i < props2.Count(); ++i)
                 {
                     var value = props2[i].GetValue(item);
                     @if(value != null){<td>@value</td>}

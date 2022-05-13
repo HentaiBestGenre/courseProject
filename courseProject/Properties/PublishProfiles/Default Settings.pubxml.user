@@ -7,11 +7,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAI9xpQXO8EESwtNKz6GpJKAAAAAACAAAAAAAQZgAAAAEAACAAAAD+N5ppPwaxx+IvekL3XEBSupWsWaAwNU75ev5NnS19DAAAAAAOgAAAAAIAACAAAAD4g7WQv54FqlJnXovRo7M/FjfsTqMyJRcwhsV7WTgChSAAAADnT64e03wg9HzGIc+bQrm90TLa2CqvkrA20Uy7nSUvIkAAAAA2i0LUzEk2ThbArCuZfSwmPmaDVP8ncSRHHpN0VzvNMc7uBgah2zdoD3RcZmXJVFZf2hxczY4AZ1VJGOUjUZRt</EncryptedPassword>
-    <History>True|2022-05-10T21:36:41.7827538Z;False|2022-05-11T00:35:38.6960000+03:00;False|2022-05-11T00:34:46.6994291+03:00;True|2022-05-11T00:30:41.6338396+03:00;True|2022-05-11T00:28:05.9167249+03:00;True|2022-05-11T00:22:16.8838432+03:00;False|2022-05-11T00:20:34.2256804+03:00;True|2022-05-11T00:18:55.2002737+03:00;True|2022-05-11T00:11:15.9377255+03:00;True|2022-05-11T00:08:41.3229374+03:00;True|2022-05-11T00:03:46.0761023+03:00;False|2022-05-10T23:59:20.4934172+03:00;True|2022-05-10T23:24:58.8414804+03:00;</History>
+    <History>True|2022-05-13T21:32:34.5202776Z;False|2022-05-14T00:05:26.6579147+03:00;False|2022-05-14T00:04:27.1998087+03:00;True|2022-05-14T00:02:46.8489762+03:00;True|2022-05-11T00:36:41.7827538+03:00;False|2022-05-11T00:35:38.6960000+03:00;False|2022-05-11T00:34:46.6994291+03:00;True|2022-05-11T00:30:41.6338396+03:00;True|2022-05-11T00:28:05.9167249+03:00;True|2022-05-11T00:22:16.8838432+03:00;False|2022-05-11T00:20:34.2256804+03:00;True|2022-05-11T00:18:55.2002737+03:00;True|2022-05-11T00:11:15.9377255+03:00;True|2022-05-11T00:08:41.3229374+03:00;True|2022-05-11T00:03:46.0761023+03:00;False|2022-05-10T23:59:20.4934172+03:00;True|2022-05-10T23:24:58.8414804+03:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <DestinationConnectionStrings Include="DefaultConnection">
-      <Value>Data Source=SQL8001.site4now.net%3bInitial Catalog=db_a857b8_pythonforever2%3bUser Id=db_a857b8_pythonforever2_admin%3bPassword=Vadim14112003%3bTrustServerCertificate=True</Value>
+      <Value>Data Source=SQL8003.site4now.net%3bInitial Catalog=db_a857b8_pythonforever2%3bUser Id=db_a857b8_pythonforever2_admin%3bPassword=Vadim14112003%3bTrustServerCertificate=True</Value>
     </DestinationConnectionStrings>
   </ItemGroup>
 </Project>
