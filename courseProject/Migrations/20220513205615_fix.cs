@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace courseProject.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class fix : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -211,9 +211,15 @@ namespace courseProject.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreaterId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TopicId = table.Column<int>(type: "int", nullable: false),
+                    CreationData = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StringFieldName1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StringFieldName2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StringFieldName3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TextFieldName1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TextFieldName2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TextFieldName3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IntFieldName1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IntFieldName2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IntFieldName3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -222,10 +228,7 @@ namespace courseProject.Migrations
                     DateTimeFieldName3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BoolFieldName1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BoolFieldName2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BoolFieldName3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreationData = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreaterId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TopicId = table.Column<int>(type: "int", nullable: false)
+                    BoolFieldName3 = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -251,9 +254,15 @@ namespace courseProject.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StringFieldValue1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StringFieldValue2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StringFieldValue3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationData = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CollectionId = table.Column<int>(type: "int", nullable: false),
+                    CreaterId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StringFieldValue1 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    StringFieldValue2 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    StringFieldValue3 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    TextFieldValue1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TextFieldValue2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TextFieldValue3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IntFieldValue1 = table.Column<int>(type: "int", nullable: true),
                     IntFieldValue2 = table.Column<int>(type: "int", nullable: true),
                     IntFieldValue3 = table.Column<int>(type: "int", nullable: true),
@@ -262,10 +271,7 @@ namespace courseProject.Migrations
                     DateTimeFieldValue3 = table.Column<DateTime>(type: "datetime2", nullable: true),
                     BoolFieldValue1 = table.Column<bool>(type: "bit", nullable: true),
                     BoolFieldValue2 = table.Column<bool>(type: "bit", nullable: true),
-                    BoolFieldValue3 = table.Column<bool>(type: "bit", nullable: true),
-                    CreationData = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CollectionId = table.Column<int>(type: "int", nullable: false),
-                    CreaterId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    BoolFieldValue3 = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {

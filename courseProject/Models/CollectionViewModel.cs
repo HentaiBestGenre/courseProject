@@ -11,6 +11,9 @@ namespace courseProject.Models
         public string? StringFieldName1 { get; set; }
         public string? StringFieldName2 { get; set; }
         public string? StringFieldName3 { get; set; }
+        public string? TextFieldName1 { get; set; }
+        public string? TextFieldName2 { get; set; }
+        public string? TextFieldName3 { get; set; }
         public string? IntFieldName1 { get; set; }
         public string? IntFieldName2 { get; set; }
         public string? IntFieldName3 { get; set; }

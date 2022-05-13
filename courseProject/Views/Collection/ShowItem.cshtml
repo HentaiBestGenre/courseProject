@@ -10,7 +10,7 @@
     <tr>
         <th>Item Name</th>
         @{ var props1 = typeof(Collection).GetProperties(); }
-        @for(int i = 3; i < 15; ++i)
+        @for(int i = 7; i < props1.Count(); ++i)
         {
             var value = props1[i].GetValue(Model.Collection);
             @if(value != null){<th>@value</th>}
@@ -20,7 +20,7 @@
     <tr>
         <td>@Model.Name</td>
         @{ var props2 = typeof(Item).GetProperties(); }
-        @for(int i = 2; i < 14; ++i)
+        @for(int i = 7; i < props2.Count(); ++i)
         {
             var value = props2[i].GetValue(Model);
             @if(value != null){<td>@value</td>}

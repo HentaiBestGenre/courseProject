@@ -81,6 +81,15 @@ namespace courseProject.Migrations
                     b.Property<string>("StringFieldName3")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TextFieldName1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TextFieldName2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TextFieldName3")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("TopicId")
                         .HasColumnType("int");
 
@@ -172,12 +181,24 @@ namespace courseProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StringFieldValue1")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("StringFieldValue2")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("StringFieldValue3")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("TextFieldValue1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TextFieldValue2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TextFieldValue3")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

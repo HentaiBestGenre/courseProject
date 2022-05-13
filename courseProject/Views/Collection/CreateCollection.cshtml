@@ -26,22 +26,40 @@
     <table class="table table-condensed table-bordered">
         <tr>
             <th>String Fields Names</th>
+            <th>Text Fields Names</th>
             <th>Int Fields Names</th>
             <th>DateTime Fields Names</th>
             <th>Bool Fields Names</th>
         </tr>
         <tr>
             <td><div id="StringFields" class="col-9"></div></td>
+            <td><div id="TextFields" class="col-9"></div></td>
             <td><div id="IntFields" class="col-9"></div></td>
             <td><div id="DateTimeFields" class="col-9"></div></td>
             <td><div id="BoolFields" class="col-9"></div></td>
         </tr>
         <tr>
             <div>
-                <td><input type="button" id="StringButton" class="btn btn-primary" value="Add String Fild" onclick="newField('String')" /></td>
-                <td><input type="button" id="IntButton" class="btn btn-primary" value="Add Int Fild" onclick="newField('Int')" /></td>
-                <td><input type="button" id="DateTimeButton" class="btn btn-primary" value="Add DateTime Fild" onclick="newField('DateTime')" /></td>
-                <td><input type="button" id="BoolButton" class="btn btn-primary" value="Add Bool Fild" onclick="newField('Bool')" /></td>
+                <td>
+                    <input type="button" id="StringButton" class="btn btn-primary" value="Add String Fild" onclick="newField('String')" />
+                    <input type="button" id="StringButton" class="btn btn-primary" value="Delete" onclick="deleteField('String')" />
+                </td>
+                <td>
+                    <input type="button" id="TextButton" class="btn btn-primary" value="Add Text Fild" onclick="newField('Text')" />
+                    <input type="button" id="TextButton" class="btn btn-primary" value="Delete" onclick="deleteField('Text')" />
+                </td>
+                <td>
+                    <input type="button" id="IntButton" class="btn btn-primary" value="Add Int Fild" onclick="newField('Int')" />
+                    <input type="button" id="IntButton" class="btn btn-primary" value="Delete" onclick="deleteField('Int')" />
+                </td>
+                <td>
+                    <input type="button" id="DateTimeButton" class="btn btn-primary" value="Add DateTime Fild" onclick="newField('DateTime')" />
+                    <input type="button" id="DateTimeButton" class="btn btn-primary" value="Delete" onclick="deleteField('DateTime')" />
+                </td>
+                <td>
+                    <input type="button" id="BoolButton" class="btn btn-primary" value="Add Bool Fild" onclick="newField('Bool')" />
+                    <input type="button" id="BoolButton" class="btn btn-primary" value="Delete" onclick="deleteField('Bool')" />
+                </td>
             </div>
         </tr>
     </table>
@@ -60,10 +78,12 @@
                 div.setAttribute("class", "form-group");
 
             let label = document.createElement("span");
+                label.setAttribute("id", "span"+type+"FieldName"+nextFieldId);
             let text = document.createTextNode(type+"FieldName"+nextFieldId);
             label.appendChild(text);
 
             let field = document.createElement("input");
+                field.setAttribute("id", type+"FieldName"+nextFieldId);
                 field.setAttribute("name", type+"FieldName"+nextFieldId);
                 field.setAttribute("type", "text");
 
@@ -71,5 +91,11 @@
             div.appendChild(field);
             container.appendChild(div);
         }
+    }
+    function deleteField(type) {
+        let container = document.getElementById(type + "Fields"); 
+        let fieldCount = container.getElementsByTagName("input").length;
+        document.getElementById("span"+type+"FieldName"+fieldCount).remove();
+        document.getElementById(type+"FieldName"+fieldCount).remove();
     }
 </script>
